@@ -1,46 +1,42 @@
-<table>
-    <thead>
-        <tr>
-            <th>Kurs</th>
-            <th>Veranstaltungsort</th>
-            <th>Adresse des Veranstaltungsortes</th>
-            <th>Öffentlich erreichbar?</th>
-            <th>Kursleiter</th>
-            <th>Alle Termine</th>
-          </tr>
-    </thead>
-      <tbody>
-        <tr *ngFor="let course of storeService.courses">
-            <td>{{course.name}}</td>
-            <td>{{course.eventLocation.name}}</td>
-            <td>{{course.eventLocation.address}}</td>
-            <td>{{course.eventLocation.venueByPublicTansport == true ? "Ja" : "Nein"}}</td>
-            <td>{{course.instructor}}</td>
-            <td>
-                <ul>
-                    <li *ngFor="let date of course.dates">
-                        <span>{{date.begin | date:"MMM dd, yyyy 'um' hh:mm a" }}</span> - <span>{{date.end | date:"MMM dd, yyyy 'um' hh:mm a"}}</span>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-      </tbody>
-</table>
+<h2>Kurse:</h2>
+<div class="container-fluid">
+  <div class="row align-items-center justify-content-center" *ngFor="let course of storeService.courses">
+    <div class="col-sm-12 col-md-10 align-self-center">
+      <div class="row courses-row">
+        <div class="col-sm-7 test-color"><h2>{{course.name}}</h2></div>
+        <div class="col-sm-5 test-color"><b>Kursleiter:</b><br>{{course.instructor}}</div>
+        <div class="w-100"></div>
+        <div class="col-sm-7 "><b>Ort:</b><br>{{course.eventLocation.name}}<br>{{course.eventLocation.address}}</div>
+        <div class="col-sm-5 "><b>Öffentlicher Transport:</b><br>{{course.eventLocation.venueByPublicTansport == true ? "Ja" : "Nein"}}</div>
+        <div class="w-100"></div>
+        <div class="col-sm-12 test-color">
+          <b>Zeiten:</b>
+          <ul>
+            <li *ngFor="let date of course.dates">
+              <span>{{date.begin | date:"MMM dd, yyyy 'um' hh:mm a" }}</span> - 
+              <span>{{date.end | date:"MMM dd, yyyy 'um' hh:mm a"}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Geburtsdatum</th>
-            <th>Kurs</th>
-          </tr>
-    </thead>
-      <tbody>
-        <tr *ngFor="let registration of storeService.registrations">
-            <td>{{registration.name}}</td>
-            <td>{{registration.birthdate}}</td>
-            <td>{{registration.course.name}}</td>
-        </tr>
-      </tbody>
-</table>
-<button [ngClass]="page == storeService.currentPage ? 'active' : ''" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
+<h2>Registrierte Teilnehmer:</h2>
+
+<div class="container-fluid">
+  <!-- Erste Zeile: Tabelle mit Kursinformationen -->
+  <div class="row align-items-center justify-content-center" *ngFor="let registration of storeService.registrations">
+    <div class="col-sm-12 col-md-10 align-self-center">
+      <div class="row registration-row">
+        <div class="col-sm-5 test-color"><b>{{registration.name}}</b></div>
+        <div class="col-sm-2 test-color">{{registration.birthdate}}</div>
+        <div class="col-sm-5 "><b>Kurs:</b><br>{{registration.course.name}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="btn-group pagination">
+  <button [ngClass]="page == storeService.currentPage ? 'btn btn-primary disabled button-cfg' : 'btn btn-primary button-cfg'" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
+</div>

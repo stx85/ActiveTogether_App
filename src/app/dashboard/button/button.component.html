@@ -1,1 +1,3 @@
-<button (click)="buttonClicked()">{{showForm ? "Formular schließen": 'Formular öffnen'}}</button>
+<div ngClass="{{showForm ? 'button-container' : 'button-container-closed'}}">
+    <button mat-flat-button (click)="buttonClicked()">{{showForm ? "Formular schließen": 'Formular öffnen'}}</button>
+</div>

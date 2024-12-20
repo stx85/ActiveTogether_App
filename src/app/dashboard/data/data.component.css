@@ -1,3 +1,39 @@
 button.active {
     background-color: orange;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.button-cfg {
+    max-width: 40px;
+}
+
+.courses-row {
+    padding: 5px;
+    margin-bottom: 20px;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border-radius: 5px;
+}
+
+.registration-row {
+    padding: 5px;
+    margin-bottom: 20px;
+    background-color: #EEEEEE;
+    color: #393E46;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .courses-row {
+        min-height: 120px;
+    }
+
+    .registration-row {
+        min-height: 120px;
+    }
+}

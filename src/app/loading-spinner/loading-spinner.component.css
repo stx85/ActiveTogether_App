@@ -3,6 +3,7 @@
     width: 100%;
     height: 100vh;
     background-color:rgba(0, 0, 0, 0.286);
+    z-index: 99;
 }
 
 .center {
@@ -12,5 +13,6 @@
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
+    z-index: 100;
 }
 

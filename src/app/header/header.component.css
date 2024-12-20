@@ -1,9 +1,32 @@
-.flex {
+.header-container {
     display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: #00ADB5;
+    flex-wrap: wrap;
+}
+
+.title {
+    position: absolute;
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    font-weight: bolder;
+    color: #EEEEEE;
+    font-size: xx-large;
 }
 
 img {
     width: 100%;
     height: auto;
     max-width: 200px;
+    opacity: 20;
+    mask: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,1) 100%);
+}
+
+@media only screen and (max-width: 600px) {
+    .title {
+        width: 95%;
+        text-align: right;
+    }
 }

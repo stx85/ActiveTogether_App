@@ -1,0 +1,46 @@
+h2 {
+    color: white;
+}
+
+.form-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: #222831;
+    padding: 10px;
+}
+
+.form-cfg {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-content: center;
+}
+
+.child-cfg {
+    display: flex;
+    position: relative;
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.field-cfg {
+    position: relative;
+    align-self: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* .mat-accent.mat-mdc-checkbox {
+    --mat-checkbox-label-text-color: black;
+} */
+
+@media only screen and (max-width: 600px) {
+
+    .field-cfg {
+        width: 90%;
+    }
+}

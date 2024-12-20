@@ -1,3 +1,17 @@
 <app-button (buttonClickedEvent)="buttonClicked()" [showForm]="showForm"></app-button>
-<app-add-data *ngIf="showForm"></app-add-data>
+<app-add-data (positivRegistrationEvent)="handleModalEvent()" *ngIf="showForm"></app-add-data>
 <app-data></app-data>
+
+<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="registrationModalLabel">Erfolgreich registriert</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
