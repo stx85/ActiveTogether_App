@@ -3,37 +3,55 @@
         <div class="child-cfg">
             <h2>Zum Kurs anmelden!</h2>
         </div>
-        <div class="child-cfg">
+        <div class="child-cfg" style="margin-bottom: 20px;">
             <mat-form-field class="field-cfg">
                 <mat-label>Name</mat-label>
-                <input matInput required type="input" formControlName="name">
-                <mat-error>Bitte Namen eingeben</mat-error>
+                <input matInput required type="input" formControlName="name" placeholder="Vorname Nachname">
+                <mat-error>Bitte den vollständigen Namen (Vorname Nachname) eingeben.</mat-error>
+                <mat-hint>Eingabe: Vorname Nachname</mat-hint>
             </mat-form-field>
         </div>
-        <div class="child-cfg">
+        <div class="child-cfg" style="margin-bottom: 20px;">
             <mat-form-field class="field-cfg">
-                <mat-label>Geburtsdatum</mat-label>
-                <input matInput required [matDatepicker]="picker"  formControlName="birthdate">
-                <mat-hint>TT.MM.JJJJ</mat-hint>
+                <mat-label>Geburtsdatum auswählen</mat-label>
+                <input matInput required readonly [matDatepicker]="picker"  formControlName="birthdate">
+                <mat-hint>Bitte wählen sie ihr Geburtsdatum aus.</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-                <mat-error>Bitte Geburtsdatum eingeben</mat-error>
+                <mat-error>Bitte wählen sie ihr Geburtsdatum aus.</mat-error>
             </mat-form-field>
         </div>
         <div class="child-cfg">
             <mat-form-field class="field-cfg">
-                <mat-label>Auswählen</mat-label>
+                <mat-label>Kurs auswählen</mat-label>
                 <mat-select required formControlName="courseId">
                     <mat-option *ngFor="let course of storeService.courses" [value]="course.id">{{course.name}}, {{course.instructor}}</mat-option>
                 </mat-select>
                 <mat-error>Sie müssen einen Kurs auswählen</mat-error>
             </mat-form-field>
         </div>
-        <div class="child-cfg">
-            <mat-checkbox formControlName="newsletter">Ich abonniere den Newsletter</mat-checkbox>
+        <div class="child-cfg" style="margin-bottom: 20px;">
+            <mat-form-field class="field-cfg">
+                <mat-label>E-Mail Adresse</mat-label>
+                <input matInput required type="input" formControlName="email" placeholder="max.mustermann@beispiel.at" />
+                
+                <mat-error>Geben sie bitte ihre E-Mail Adresse ein</mat-error>
+                <mat-hint>E-Mail Adresse</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="child-cfg" style="flex-direction: column; margin-bottom: 30px;">
+            <mat-checkbox formControlName="newsletter">
+                Ich abonniere den Newsletter
+                
+            </mat-checkbox>
+            <div style="font-size: x-small;">
+                Hier bekommen sie alle Informationen zu den<br>
+                Kursen und zukünftigen Ereignissen zugesandt.
+            </div>
         </div>
         <div class="child-cfg">
             <button [disabled]="registrationForm.invalid" mat-flat-button type="submit">Erfassen</button>
+            <button mat-flat-button style="margin-left: 20px;" (click)="onAbort()">Abbruch</button>
         </div>
     </form>
 </div>

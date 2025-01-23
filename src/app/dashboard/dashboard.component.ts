@@ -27,6 +27,7 @@ export class DashboardComponent {
   }
 
   handleModalEvent() {
+    this.showForm = !this.showForm;
     this.openModal();
   }
 

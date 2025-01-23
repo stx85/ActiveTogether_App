@@ -1,42 +1,56 @@
-<h2>Kurse:</h2>
-<div class="container-fluid">
-  <div class="row align-items-center justify-content-center" *ngFor="let course of storeService.courses">
-    <div class="col-sm-12 col-md-10 align-self-center">
-      <div class="row courses-row">
-        <div class="col-sm-7 test-color"><h2>{{course.name}}</h2></div>
-        <div class="col-sm-5 test-color"><b>Kursleiter:</b><br>{{course.instructor}}</div>
-        <div class="w-100"></div>
-        <div class="col-sm-7 "><b>Ort:</b><br>{{course.eventLocation.name}}<br>{{course.eventLocation.address}}</div>
-        <div class="col-sm-5 "><b>Öffentlicher Transport:</b><br>{{course.eventLocation.venueByPublicTansport == true ? "Ja" : "Nein"}}</div>
-        <div class="w-100"></div>
-        <div class="col-sm-12 test-color">
+<h2 mat-typography class="mat-display-2 data-header" style="margin-bottom: 30px;">Kurse:</h2>
+<div class="container" *ngFor="let course of storeService.courses">
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-8">
+      <mat-card style="background-color: #00ADB5;">
+        <mat-card-header>
+          <mat-card-title class="mat-headline" style="font-size: 1.5rem; font-weight: bold;">
+            {{ course.name }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><b>Ort:</b> {{ course.eventLocation.name }}, {{ course.eventLocation.address }}</p>
+          <p><b>Kursleiter:</b> {{ course.instructor }}</p>
+          <p><b>Öffentlicher Transport:</b> {{ course.eventLocation.venueByPublicTansport ? "Ja" : "Nein" }}</p>
           <b>Zeiten:</b>
           <ul>
             <li *ngFor="let date of course.dates">
-              <span>{{date.begin | date:"MMM dd, yyyy 'um' hh:mm a" }}</span> - 
-              <span>{{date.end | date:"MMM dd, yyyy 'um' hh:mm a"}}</span>
+              {{ date.begin | date:'dd.MM.yyyy, HH:mm' }} - {{ date.end | date:'dd.MM.yyyy, HH:mm' }}
             </li>
           </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<h2 mat-typography class="mat-display-2 data-header" style="margin-top: 40px;">Registrierte Teilnehmer:</h2>
+<div class="container">
+  <div class="row justify-content-center" *ngFor="let registration of storeService.registrations">
+    <div class="col-md-8 mb-4">
+      <mat-card>
+        <div class="spinner-overlay" *ngIf="storeService.deletingLoading && storeService.deletingId == registration.id">
+          <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
         </div>
-      </div>
+
+        <mat-card-content class=" align-items-center" [class.content-blur]="storeService.deletingLoading && storeService.deletingId == registration.id">
+          <div class="col-6" style="font-size: large;"><b>{{ registration.name }}</b></div>
+          <div class="col-6"><b>Geburtsdatum:</b> {{ registration.birthdate  | date:'dd.MM.yyyy' }}</div>
+          <div class="col-6"><b>Kurs:</b> {{ registration.course.name }}</div>
+          <div class="col-8"><b>Registriert:</b> {{ registration.registrationDate | date:'dd.MM.yyyy' }}</div>
+          <button class="btn btn-danger" (click)="deleteClicked(registration.id)">
+            Abmelden
+          </button>  
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
 
-<h2>Registrierte Teilnehmer:</h2>
-
-<div class="container-fluid">
-  <!-- Erste Zeile: Tabelle mit Kursinformationen -->
-  <div class="row align-items-center justify-content-center" *ngFor="let registration of storeService.registrations">
-    <div class="col-sm-12 col-md-10 align-self-center">
-      <div class="row registration-row">
-        <div class="col-sm-5 test-color"><b>{{registration.name}}</b></div>
-        <div class="col-sm-2 test-color">{{registration.birthdate}}</div>
-        <div class="col-sm-5 "><b>Kurs:</b><br>{{registration.course.name}}</div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="btn-group pagination">
   <button [ngClass]="page == storeService.currentPage ? 'btn btn-primary disabled button-cfg' : 'btn btn-primary button-cfg'" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
+</div>
+<div class="pagination">
+  <button mat-flat-button style="margin-right: 20px;" (click)='storeService.sortOrtder="asc"'>Aufsteigend sortieren</button>
+  <button mat-flat-button (click)='storeService.sortOrtder="desc"'>Absteigend sortieren</button>
 </div>

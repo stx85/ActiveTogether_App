@@ -2,6 +2,10 @@ button.active {
     background-color: orange;
 }
 
+.data-header {
+    text-align: center;
+}
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -12,28 +16,23 @@ button.active {
     max-width: 40px;
 }
 
-.courses-row {
-    padding: 5px;
-    margin-bottom: 20px;
-    background-color: #393E46;
-    color: #EEEEEE;
-    border-radius: 5px;
-}
-
-.registration-row {
-    padding: 5px;
-    margin-bottom: 20px;
-    background-color: #EEEEEE;
-    color: #393E46;
-    border-radius: 5px;
-}
-
-@media (min-width: 768px) {
-    .courses-row {
-        min-height: 120px;
-    }
-
-    .registration-row {
-        min-height: 120px;
-    }
-}
+.spinner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 10; /* Höhere Priorität */
+  }
+  
+  mat-card {
+    position: relative;
+  }
+  
+  .content-blur {
+    filter: blur(2px); /* Optional, um den Hintergrund zu „verblassen“ */
+  }
